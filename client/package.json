@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "main": "src/index.jsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --config webpack.dev.config.js",
-    "build": "rimraf dist && webpack --config webpack.prod.config.js --progress --profile --color"
+    "build": "rimraf dist && webpack --config webpack.prod.config.js"
   },
   "author": "Connor Lind",
   "license": "ISC",
