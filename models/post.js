@@ -1,17 +1,10 @@
 const mongoose = require('mongoose');
 
 const PostSchema = new mongoose.Schema({
-  email: {
+  text: {
     type: String,
     required: true,
-    trim: true,
     minlength: 1,
-    unique: true,
-  },
-  password: {
-    type: String,
-    require: true,
-    minlength: 6,
   },
 });
 

@@ -3,13 +3,15 @@ require('./config/config');
 const express = require('express');
 const path = require('path');
 const hbs = require('hbs');
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 // const { ObjectID } = require('mongodb');
-const { Post } = require('./models/post');
 require('./db/mongoose');
+const { Post } = require('./models/post');
 
-const port = process.env.PORT || 3000;
 const app = express();
+const port = process.env.PORT;
+
+app.use(bodyParser.json()); // to send json to server
 
 hbs.registerPartials(path.join(__dirname, '/views/partials'));
 app.set('view engine', 'hbs');
@@ -32,9 +34,15 @@ app.get('/about', (req, res) => {
   });
 });
 
-app.get('/projects', (req, res) => {
-  res.render('projects.hbs', {
-    pageTitle: 'Projects',
+app.post('/api/post', (req, res) => {
+  const post = new Post({
+    text: req.body.text,
+  });
+
+  post.save().then((doc) => {
+    res.send(doc);
+  }, (e) => {
+    res.status(400).send(e);
   });
 });
 
