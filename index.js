@@ -19,11 +19,15 @@ app.use(bodyParser.json()); // to send json to server
 app.use(express.static(path.join(__dirname, '/client')));
 
 app.get('/', (req, res) => {
-  res.render('home');
+  res.render('home', {
+    title: 'Home',
+  });
 });
 
 app.get('/about', (req, res) => {
-  res.render('about');
+  res.render('about', {
+    title: 'About',
+  });
 });
 
 app.post('/api/post', (req, res) => {
