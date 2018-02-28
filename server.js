@@ -24,7 +24,7 @@ app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '/client')));
+app.use(express.static(path.join(__dirname, '/client/dist')));
 
 app.get('/', (req, res) => {
   res.render('home', {
@@ -35,6 +35,7 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
   res.render('about', {
     title: 'About',
+    layout: 'about',
   });
 });
 

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.jsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "",
+    "build": "rimraf dist && webpack"
   },
   "author": "Connor Lind",
   "license": "ISC",
