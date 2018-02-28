@@ -12,10 +12,18 @@ const { Post } = require('./models/post');
 const app = express();
 const port = process.env.PORT;
 
-app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
+const hbs = exphbs.create({
+  defaultLayout: 'main',
+  extname: '.hbs',
+  layoutsDir: path.join(__dirname, '/client/views/layouts'),
+  partialsDir: path.join(__dirname, '/client/views/partials'),
+});
+
+app.set('views', path.join(__dirname, '/client/views'));
+app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
-app.use(bodyParser.json()); // to send json to server
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/client')));
 
 app.get('/', (req, res) => {
