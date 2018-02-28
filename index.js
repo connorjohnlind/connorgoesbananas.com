@@ -2,7 +2,7 @@ require('./config/config');
 
 const express = require('express');
 const path = require('path');
-const hbs = require('hbs');
+const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 // const { ObjectID } = require('mongodb');
 
@@ -12,27 +12,19 @@ const { Post } = require('./models/post');
 const app = express();
 const port = process.env.PORT;
 
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+// app.set('views', path.join(__dirname, '/client/views'));
+
 app.use(bodyParser.json()); // to send json to server
-
-hbs.registerPartials(path.join(__dirname, '/views/partials'));
-app.set('view engine', 'hbs');
-
 app.use(express.static(path.join(__dirname, '/client')));
 
-hbs.registerHelper('getCurrentYear', () => new Date().getFullYear());
-hbs.registerHelper('screamIt', text => text.toUpperCase());
-
 app.get('/', (req, res) => {
-  res.render('home.hbs', {
-    pageTitle: 'Home Page',
-    welcomeMessage: 'Welcome to my website',
-  });
+  res.render('home');
 });
 
 app.get('/about', (req, res) => {
-  res.render('about.hbs', {
-    pageTitle: 'About Page',
-  });
+  res.render('about');
 });
 
 app.post('/api/post', (req, res) => {
