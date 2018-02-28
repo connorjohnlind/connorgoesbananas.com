@@ -12,9 +12,8 @@ const { Post } = require('./models/post');
 const app = express();
 const port = process.env.PORT;
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
-// app.set('views', path.join(__dirname, '/client/views'));
+app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
+app.set('view engine', '.hbs');
 
 app.use(bodyParser.json()); // to send json to server
 app.use(express.static(path.join(__dirname, '/client')));
