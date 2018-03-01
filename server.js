@@ -32,10 +32,10 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/about', (req, res) => {
-  res.render('about', {
-    title: 'About',
-    layout: 'about',
+app.get('/post', (req, res) => {
+  res.render('post', {
+    title: 'Post',
+    layout: 'post',
   });
 });
 

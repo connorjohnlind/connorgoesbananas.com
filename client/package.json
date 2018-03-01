@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.jsx",
   "scripts": {
-    "start": "",
-    "build": "rimraf dist && webpack"
+    "start": "rimraf dist && webpack --config webpack.dev.config.js",
+    "build": "rimraf dist && webpack --config webpack.prod.config.js"
   },
   "author": "Connor Lind",
   "license": "ISC",
@@ -36,7 +36,8 @@
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.1",
     "url-loader": "^0.6.2",
-    "webpack": "^3.11.0"
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^3.1.0"
   },
   "dependencies": {
     "axios": "^0.17.1",
