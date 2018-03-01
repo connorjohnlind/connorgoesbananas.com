@@ -35,7 +35,6 @@ app.get('/', (req, res) => {
 app.get('/post', (req, res) => {
   res.render('post', {
     title: 'Post',
-    layout: 'post',
   });
 });
 

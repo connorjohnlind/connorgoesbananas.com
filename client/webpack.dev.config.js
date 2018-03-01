@@ -1,6 +1,6 @@
 module.exports = {
   entry: {
-    main: './src/main.jsx',
+    home: './src/home.jsx',
     post: './src/post.jsx',
   },
   output: {
