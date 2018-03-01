@@ -26,6 +26,7 @@ app.set('view engine', '.hbs');
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/client/dist')));
 
+
 app.get('/', (req, res) => {
   res.render('home', {
     title: 'Home',
@@ -38,17 +39,39 @@ app.get('/post', (req, res) => {
   });
 });
 
-app.post('/api/post', (req, res) => {
+
+app.get('/:year/:month/:day/:urlTitle', async (req, res) => {
+  const { urlTitle } = req.params;
+
+  try {
+    const post = await Post.findOne({ urlTitle });
+    res.render('post', {
+      title: post.title,
+      text: post.text,
+    });
+  } catch (e) {
+    res.status(400).send(e);
+  }
+});
+
+app.post('/api/post', async (req, res) => {
+  const { title, text, urlTitle } = req.body;
   const post = new Post({
-    text: req.body.text,
+    title,
+    text,
+    urlTitle,
+    datePosted: Date.now(),
+    lastModified: Date.now(),
   });
 
-  post.save().then((doc) => {
-    res.send(doc);
-  }, (e) => {
+  try {
+    await post.save();
+    res.send(post);
+  } catch (e) {
     res.status(400).send(e);
-  });
+  }
 });
+
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`);

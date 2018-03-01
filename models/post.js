@@ -11,14 +11,13 @@ const PostSchema = new mongoose.Schema({
     required: true,
     minlength: 1,
   },
-  datePosted: {
-    type: Date,
+  urlTitle: {
+    type: String,
     required: true,
+    minlength: 1,
   },
-  lastModified: {
-    type: Date,
-    required: true,
-  },
+  datePosted: Date,
+  lastModified: Date,
 });
 
 const Post = mongoose.model('Post', PostSchema);
