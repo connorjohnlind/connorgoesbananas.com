@@ -27,18 +27,14 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/client/dist')));
 
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+  const posts = await Post.find({}).sort('-datePosted').limit(4);
   res.render('home', {
+    featured: posts[0],
+    recent: posts.slice(1, 4),
     title: 'Home',
   });
 });
-
-app.get('/post', (req, res) => {
-  res.render('post', {
-    title: 'Post',
-  });
-});
-
 
 app.get('/:year/:month/:day/:urlTitle', async (req, res) => {
   const { urlTitle } = req.params;
@@ -53,6 +49,8 @@ app.get('/:year/:month/:day/:urlTitle', async (req, res) => {
     res.status(400).send(e);
   }
 });
+
+// CMS Routes
 
 app.post('/api/post', async (req, res) => {
   const { title, text, urlTitle } = req.body;
