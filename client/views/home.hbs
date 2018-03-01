@@ -1,11 +1,47 @@
 {{> page/nav}}
 
 <h1>{{featured.title}}</h1>
+<p>{{{decode featured.html}}}</p>
+<p>{{featured.datePosted}}</p>
 
 <h2>Recent Posts:</h2>
-<p>{{recent.0.title}}</p>
-<p>{{recent.1.title}}</p>
-<p>{{recent.2.title}}</p>
+<div>
+  <h3>{{recent.0.title}}</h3>
+  <p>{{{decode recent.0.html}}}</p>
+  <p>{{recent.0.datePosted}}</p>
+</div>
+<div>
+  <h3>{{recent.1.title}}</h3>
+  <p>{{{decode recent.1.html}}}</p>
+  <p>{{recent.1.datePosted}}</p>
+</div>
+<div>
+  <h3>{{recent.2.title}}</h3>
+  <p>{{{decode recent.2.html}}}</p>
+  <p>{{recent.2.datePosted}}</p>
+</div>
 
 {{> page/footer}}
 {{> scripts/home}}
+
+<!--
+const PostSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+    minlength: 1,
+  },
+  html: {
+    type: String,
+    required: true,
+    minlength: 1,
+  },
+  urlTitle: {
+    type: String,
+    required: true,
+    minlength: 1,
+  },
+  datePosted: Date,
+  lastModified: Date,
+});
+-->
