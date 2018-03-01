@@ -22,11 +22,8 @@ const hbs = exphbs.create({
   defaultLayout: 'main',
   extname: '.hbs',
   helpers,
-  layoutsDir: path.join(__dirname, '/client/views/layouts'),
-  partialsDir: path.join(__dirname, '/client/views/partials'),
 });
 
-app.set('views', path.join(__dirname, '/client/views'));
 app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
