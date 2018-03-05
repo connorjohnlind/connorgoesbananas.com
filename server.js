@@ -1,7 +1,7 @@
 require('./config/config');
 
-const express = require('express');
 const path = require('path');
+const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const he = require('he');
@@ -43,7 +43,6 @@ app.get('/', async (req, res) => {
 
 app.get('/:year/:month/:day/:urlTitle', async (req, res) => {
   const { urlTitle } = req.params;
-
   try {
     const post = await Post.findOne({ urlTitle });
     res.render('post', {
