@@ -101,9 +101,9 @@ module.exports = {
         NODE_ENV: JSON.stringify('development'),
       },
     }),
-    new HTMLWebpackPlugin({
-      template: './src/client/index.html',
-    }),
+    // new HTMLWebpackPlugin({
+    //   template: './src/client/index.html',
+    // }),
     // new BundleAnalyzerPlugin({
     //   generateStatsFile: true
     // })

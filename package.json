@@ -63,7 +63,8 @@
     "webpack-cli": "^2.0.9",
     "webpack-dev-middleware": "2.0.6",
     "webpack-dev-server": "^3.0.0",
-    "webpack-hot-middleware": "2.21.0"
+    "webpack-hot-middleware": "2.21.0",
+    "webpack-node-externals": "^1.6.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
@@ -76,10 +77,10 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node src/server.js",
-    "build:dev": "NODE_ENV=development webpack --config=webpack.config.dev.js",
-    "build": "NODE_ENV=production webpack --config=webpack.config.prod.js",
-    "dev": "NODE_ENV=development nodemon --inspect --watch config --watch src src/server.js",
-    "prod": "NODE_ENV=production node src/server.js",
+    "build": "BABEL_ENV=production webpack --config=webpack.config.prod.js --env.NODE_ENV=production",
+    "build:server": "BABEL_ENV=production webpack --config=webpack.config.server.js --env.NODE_ENV=production --watch",
+    "dev": "nodemon --inspect --watch config --watch src src/server.js",
+    "prod": "NODE_ENV=production node build/server-bundle.js",
     "heroku-postbuild": "npm run build"
   }
 }
