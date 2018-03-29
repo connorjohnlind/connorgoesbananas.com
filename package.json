@@ -79,7 +79,7 @@
     "start": "NODE_ENV=production node src/server.js",
     "build": "BABEL_ENV=production webpack --config=webpack.config.prod.js --env.NODE_ENV=production",
     "build:server": "BABEL_ENV=production webpack --config=webpack.config.server.js --env.NODE_ENV=production --watch",
-    "dev": "nodemon --inspect --watch config --watch src src/server.js",
+    "dev": "nodemon --watch build --watch webpack.config.dev.js --inspect build/server-bundle.js",
     "prod": "NODE_ENV=production node build/server-bundle.js",
     "heroku-postbuild": "npm run build"
   }

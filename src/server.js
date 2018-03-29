@@ -6,8 +6,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const expressStaticGzip = require('express-static-gzip');
 
-// import React from 'react';
-// import ReactDOMserver from 'react-dom/server';
+import React from 'react';
+import ReactDOMserver from 'react-dom/server';
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -25,8 +25,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.get('*', (req, res) => {
-  // const html = ReactDOMserver.renderToString(<h1>Hey dude!</h1>);
-  res.send({hey: 'hey'});
+  const html = ReactDOMserver.renderToString(<p>Hey dude!</p>);
+  res.send(html);
 });
 
 // Start

@@ -9,7 +9,7 @@ module.exports = {
     server: [
       'babel-runtime/regenerator',
       'babel-register',
-      './src/server.jsx',
+      './src/server.js',
     ],
   },
   output: {
