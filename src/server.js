@@ -1,35 +1,17 @@
-require('babel-register');
-require('./config/config');
-
-const path = require('path');
 const express = require('express');
-const bodyParser = require('body-parser');
-const expressStaticGzip = require('express-static-gzip');
+const React = require('react');
+const renderToString = require('react-dom/server').renderToString;
+const Home = require('./client/components/Home').default;
 
-import React from 'react';
-import ReactDOMserver from 'react-dom/server';
 
 const app = express();
-const port = process.env.PORT || 8080;
 
-app.use(bodyParser.json());
+app.get('/', (req, res) => {
+  const content = renderToString(<Home />);
 
-// devServer (catch all)
-require('./config/devServer')(app);
-
-// production (catch all)
-if (process.env.NODE_ENV === 'production') {
-  app.use(expressStaticGzip(path.resolve(__dirname, '..', 'dist'), {
-    enableBrotli: true,
-  }));
-}
-
-app.get('*', (req, res) => {
-  const html = ReactDOMserver.renderToString(<p>Hey dude!</p>);
-  res.send(html);
+  res.send(content);
 });
 
-// Start
-app.listen(port, () => {
-  console.log(`Server listening on http://localhost:${port} in ${process.env.NODE_ENV}`);
+app.listen(3000, () => {
+  console.log('Listening on port 3000');
 });
