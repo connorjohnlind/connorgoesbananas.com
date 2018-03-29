@@ -12,12 +12,33 @@ app.use(express.static('public'));
 app.get('*', (req, res) => {
   const store = createStore();
 
-  const promises = matchRoutes(Routes, req.path).map(({ route }) => {
-    return route.loadData ? route.loadData(store) : null;
-  });
+  // return all loadData functions for matching Routes
+  // and wrap each promise in a new promise for the Promise.all catch all
+  const promises = matchRoutes(Routes, req.path)
+    .map(({ route }) => {
+      return route.loadData ? route.loadData(store) : null;
+    })
+    .map(request => {
+      if (request) {
+        return new Promise((resolve, reject) => {
+          request.then(resolve).catch(resolve);
+        });
+      }
+    });
 
   Promise.all(promises).then(() => {
-    res.send(render(req, store));
+    const context = {}; // will be handled as staticContext by StaticRouter
+    const content = render(req, store, context);
+
+    if (context.url) { // for redirects
+      return res.redirect(301, context.url);
+    }
+
+    if (context.notFound) { // notFound property applied on NotFoundPage
+      res.status(404);
+    }
+
+    res.send(content);
   });
 });
 
