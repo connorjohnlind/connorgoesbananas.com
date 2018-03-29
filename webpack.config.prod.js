@@ -15,7 +15,7 @@ module.exports = {
     main: [
       'babel-runtime/regenerator',
       'babel-register',
-      './client/index.jsx',
+      './src/client/index.jsx',
     ],
   },
   mode: 'production',
@@ -99,7 +99,7 @@ module.exports = {
       },
     }),
     new HTMLWebpackPlugin({
-      template: './client/index.html',
+      template: './src/client/index.html',
     }),
     new UglifyJSPlugin(),
     new CompressionPlugin({

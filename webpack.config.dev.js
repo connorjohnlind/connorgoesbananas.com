@@ -11,7 +11,7 @@ module.exports = {
       'react-hot-loader/patch',
       'babel-register',
       'webpack-hot-middleware/client?reload=true',
-      './client/index.jsx',
+      './src/client/index.jsx',
     ],
   },
   mode: 'development',
@@ -102,7 +102,7 @@ module.exports = {
       },
     }),
     new HTMLWebpackPlugin({
-      template: './client/index.html',
+      template: './src/client/index.html',
     }),
     // new BundleAnalyzerPlugin({
     //   generateStatsFile: true
