@@ -6,7 +6,7 @@ nav {
   @extend .flex;
   @extend .row;
   justify-content: space-between;
-  font-family: "Montserrat-Bold";
+  font-family: "Montserrat-Bold", Helvetica, sans-serif;
   font-size: 16px;
   height: 110px;
   padding: 0px 10%;
@@ -20,7 +20,7 @@ nav {
 
     h1 {
       font-size: 25px;
-      margin: 0 10px 0 0;
+      margin: 0 15px 0 0;
       width: 320px;
       white-space: nowrap;
     }
@@ -34,7 +34,7 @@ nav {
       padding-left: 15px;
       border-left: 2px solid #e7e7e7;
       font-size: 16px;
-      font-family: Helvetica;
+      font-family: "Montserrat", Helvetica, sans-serif;
       margin: 0;
     }
   }
