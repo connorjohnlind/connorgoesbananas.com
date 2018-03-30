@@ -1,5 +1,12 @@
 const path = require('path');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 const webpack = require('webpack');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+const BrotliPlugin = require('brotli-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: {
@@ -38,13 +45,61 @@ module.exports = {
         test: /\.(jsx|js)$/,
         loader: 'babel-loader',
         exclude: /node_modules/
-      }
+      },
+      {
+        test: /\.(scss|css)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+                minimize: {
+                    safe: true
+                }
+            }
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+                autoprefixer: {
+                    browsers: ["last 2 versions"]
+                },
+                plugins: () => [
+                    autoprefixer
+                ]
+            },
+          },
+          {
+            loader: "sass-loader"
+          }
+        ]
+      },
+      { test: /\.(png|jpe?g|gif|svg)$/, loader: 'url-loader?limit=8000&name=images/[name].[ext]' },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff' },
+      { test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader' },
+      { test: /\.(ico)$/, loader: 'file-loader?name=[name].[ext]' },
     ]
   },
 
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'main.css'
+    }),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.css$/g,
+      cssProcessor: cssnano,
+      cssProcessorOptions: {
+        discardComments: { removeAll: true },
+        canPrint: true,
+      },
+    }),
+    new UglifyJSPlugin(),
+    new CompressionPlugin({
+      algorithm: 'gzip',
+    }),
+    new BrotliPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
-    })
+    }),
   ],
 };

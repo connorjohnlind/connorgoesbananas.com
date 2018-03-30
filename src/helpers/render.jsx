@@ -23,6 +23,7 @@ export default (req, store, context) => {
       <head>
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
+        <link rel="stylesheet" type="text/css" href="main.css">
       </head>
       <body>
         <div id="root">${content}</div>
