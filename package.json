@@ -30,7 +30,7 @@
     "express-static-gzip": "^0.3.2",
     "lodash": "4.17.4",
     "nodemon": "1.12.0",
-    "npm-run-all": "4.1.1",
+    "npm-run-all": "4.1.2",
     "react": "16.2.0",
     "react-dom": "16.0.0",
     "react-helmet": "5.2.0",
@@ -61,11 +61,11 @@
     "build": "NODE_ENV=production npm-run-all --parallel prod:build-server prod:build-client",
     "dev": "NODE_ENV=development npm-run-all --parallel dev:*",
     "dev:server": "nodemon --watch build --exec \"node build/server-bundle.js\"",
-    "dev:build-server": "webpack --config webpack.config.dev-server.js --watch",
-    "dev:build-client": "webpack --config webpack.config.dev-client.js --watch",
+    "dev:build-server": "webpack --config webpack.config.dev-server.js",
+    "dev:build-client": "webpack --config webpack.config.dev-client.js",
     "prod": "heroku local -p 8080",
-    "prod:build-server": "NODE_ENV=production rimraf build && webpack --config webpack.config.prod-server.js",
-    "prod:build-client": "NODE_ENV=production rimraf public && webpack --config webpack.config.prod-client.js",
+    "prod:build-server": "rimraf build && webpack --config webpack.config.prod-server.js",
+    "prod:build-client": "rimraf public && webpack --config webpack.config.prod-client.js",
     "heroku-postbuild": "npm run build"
   }
 }
