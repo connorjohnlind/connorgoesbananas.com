@@ -4,8 +4,6 @@ const cssnano = require('cssnano');
 const webpack = require('webpack');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
-const BrotliPlugin = require('brotli-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
@@ -94,10 +92,6 @@ module.exports = {
       },
     }),
     new UglifyJSPlugin(),
-    new CompressionPlugin({
-      algorithm: 'gzip',
-    }),
-    new BrotliPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),

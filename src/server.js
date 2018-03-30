@@ -2,8 +2,7 @@ import 'babel-polyfill';
 import path from 'path';
 import express from 'express';
 import { matchRoutes } from 'react-router-config';
-import bodyParser from 'body-parser';
-import expressStaticGzip from 'express-static-gzip';
+import compression from 'compression';
 
 import Routes from './client/Routes';
 import render from './helpers/render';
@@ -12,10 +11,7 @@ import createStore from './helpers/createStore';
 const app = express();
 const port = process.env.PORT || 8080;
 
-app.use(bodyParser.json());
-
-// devServer (catch all)
-// require('./config/devServer')(app);
+app.use(compression());
 
 app.use(express.static('public'));
 
