@@ -57,14 +57,14 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node build/server-bundle.js",
-    "build": "npm-run-all --parallel prod:build-server prod:build-client",
+    "build": "NODE_ENV=production npm-run-all --parallel prod:build-server prod:build-client",
     "dev": "NODE_ENV=development npm-run-all --parallel dev:*",
     "dev:server": "nodemon --watch build --exec \"node build/server-bundle.js\"",
     "dev:build-server": "webpack --config webpack.config.dev-server.js --watch",
     "dev:build-client": "webpack --config webpack.config.dev-client.js --watch",
     "prod": "heroku local -p 8080",
-    "prod:build-server": "rimraf build && webpack --config webpack.config.prod-server.js",
-    "prod:build-client": "rimraf public && webpack --config webpack.config.prod-client.js",
+    "prod:build-server": "NODE_ENV=production rimraf build && webpack --config webpack.config.prod-server.js",
+    "prod:build-client": "NODE_ENV=production rimraf public && webpack --config webpack.config.prod-client.js",
     "heroku-postbuild": "npm run build"
   }
 }
