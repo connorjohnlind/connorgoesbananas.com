@@ -1,4 +1,5 @@
 import 'babel-polyfill';
+import path from 'path';
 import express from 'express';
 import { matchRoutes } from 'react-router-config';
 import bodyParser from 'body-parser';

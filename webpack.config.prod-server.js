@@ -1,17 +1,22 @@
 const path = require('path');
 const webpack = require('webpack');
+const webpackNodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  entry: './src/client/client.jsx',
+  target: 'node',
+
+  entry: './src/server.js',
 
   output: {
-    filename: 'client-bundle.js',
-    path: path.resolve(__dirname, 'public')
+    filename: 'server-bundle.js',
+    path: path.resolve(__dirname, 'build')
   },
 
   resolve: {
     extensions: ['.js', '.jsx'],
   },
+
+  externals: [webpackNodeExternals()],
 
   module: {
     rules: [
@@ -26,7 +31,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('development'),
+        NODE_ENV: JSON.stringify('production'),
       },
     }),
   ],
