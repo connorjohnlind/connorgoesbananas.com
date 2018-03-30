@@ -1,8 +1,6 @@
 const path = require('path');
-const merge = require('webpack-merge');
-const baseConfig = require('./webpack.config.base.js');
 
-const config = {
+module.exports = {
   entry: './src/client/client.jsx',
 
   output: {
@@ -12,7 +10,15 @@ const config = {
 
   resolve: {
     extensions: ['.js', '.jsx'],
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.(jsx|js)$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/
+      }
+    ]
   }
 };
-
-module.exports = merge(baseConfig, config);

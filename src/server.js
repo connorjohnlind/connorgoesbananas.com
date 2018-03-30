@@ -1,11 +1,21 @@
 import 'babel-polyfill';
 import express from 'express';
 import { matchRoutes } from 'react-router-config';
+import bodyParser from 'body-parser';
+import expressStaticGzip from 'express-static-gzip';
+
+import './config/config';
 import Routes from './client/Routes';
 import render from './helpers/render';
 import createStore from './helpers/createStore';
 
 const app = express();
+const port = process.env.PORT || 8080;
+
+app.use(bodyParser.json());
+
+// devServer (catch all)
+// require('./config/devServer')(app);
 
 app.use(express.static('public'));
 
@@ -42,6 +52,7 @@ app.get('*', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Listening on port 3000');
+// Start
+app.listen(port, () => {
+  console.log(`Server listening on http://localhost:${port} in ${process.env.NODE_ENV}`);
 });

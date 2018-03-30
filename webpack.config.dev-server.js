@@ -1,9 +1,7 @@
 const path = require('path');
-const merge = require('webpack-merge');
-const baseConfig = require('./webpack.config.base.js');
 const webpackNodeExternals = require('webpack-node-externals');
 
-const config = {
+module.exports = {
   target: 'node',
 
   entry: './src/server.js',
@@ -17,7 +15,15 @@ const config = {
     extensions: ['.js', '.jsx'],
   },
 
-  externals: [webpackNodeExternals()]
-};
+  externals: [webpackNodeExternals()],
 
-module.exports = merge(baseConfig, config);
+  module: {
+    rules: [
+      {
+        test: /\.(jsx|js)$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/
+      }
+    ]
+  }
+};
