@@ -1,0 +1,52 @@
+@import '../../scss/base';
+@import '../../scss/format';
+@import '../../scss/variables';
+
+nav {
+  @extend .flex;
+  @extend .row;
+  justify-content: space-between;
+  font-family: "Montserrat-Bold";
+  font-size: 16px;
+  height: 110px;
+  padding: 0px 10%;
+
+  .title {
+    @extend .flex;
+    @extend .row;
+    justify-content: flex-start;
+    height: 30px;
+    width: 100%;
+
+    h1 {
+      font-size: 25px;
+      margin: 0 10px 0 0;
+      width: 320px;
+      white-space: nowrap;
+    }
+
+    .caption {
+      @extend .flex;
+      @extend .row;
+      justify-content: flex-start;
+      height: 100%;
+      width: 100%;
+      padding-left: 15px;
+      border-left: 2px solid #e7e7e7;
+      font-size: 16px;
+      font-family: Helvetica;
+      margin: 0;
+    }
+  }
+
+  .NavLink {
+    padding-top: 5px;
+    margin-left: 30px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .NavLinkActive {
+    border-top: 3px solid $banana-yellow;
+  }
+}

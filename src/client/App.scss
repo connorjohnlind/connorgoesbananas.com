@@ -2,8 +2,14 @@
 @import './scss/format';
 @import './scss/variables';
 
+.App-wrapper {
+  @extend .flex;
+  @extend .col;
+}
+
 .App {
   @extend .flex;
   @extend .col;
-  width: 100%;
+  width: 98%;
+  background-color: $app-color;
 }

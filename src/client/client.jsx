@@ -9,7 +9,7 @@ import Routes from './Routes';
 import reducers from './store/reducers';
 
 import './client.scss';
-import './fonts/Roboto/Roboto.scss';
+import './fonts/Montserrat/Montserrat.scss';
 import './images/favicon.ico';
 
 /* eslint-disable no-underscore-dangle */
