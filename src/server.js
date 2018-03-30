@@ -5,7 +5,6 @@ import { matchRoutes } from 'react-router-config';
 import bodyParser from 'body-parser';
 import expressStaticGzip from 'express-static-gzip';
 
-import './config/config';
 import Routes from './client/Routes';
 import render from './helpers/render';
 import createStore from './helpers/createStore';

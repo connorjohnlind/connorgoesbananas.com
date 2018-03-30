@@ -10,7 +10,7 @@
         "debug": false
       }
     ],
-    "stage-0", "react"
+    "stage-0", "babel-preset-react"
   ],
   "plugins": ["transform-runtime", "react-hot-loader/babel", "syntax-dynamic-import"]
 }
